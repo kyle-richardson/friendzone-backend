@@ -20,7 +20,7 @@ module.exports = {
 // }
 
 function getUsers() {
-  return db("users").select("id", "username", "type");
+  return db("users").select("id", "username", "type", "bio", "address", "postal_code");
 }
 
 function getAllUserInfo(username) {
@@ -31,7 +31,7 @@ function getAllUserInfo(username) {
 
 function findBy(filter) {
   return db("users")
-    .select("id", "username", "type")
+    .select("id", "username", "type", "bio", "address", "postal_code")
     .where(filter)
     .first();
 }
