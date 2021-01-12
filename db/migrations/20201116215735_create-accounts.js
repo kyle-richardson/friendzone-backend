@@ -9,9 +9,17 @@ exports.up = function(knex) {
           .unique();
         users.string("password").notNullable();
         users.string("type").defaultTo("user");
+        users.date("birthdate").notNullable();
+        users.string("first_name").notNullable();
+        users.string("last_name");
+        users.binary("photo");
         users.string("bio");
         users.string("address");
         users.string("postal_code").notNullable();
+        users.string("gender").notNullable();
+        users.string("looking_for").notNullable();
+        users.specificType('swipe_right', 'integer ARRAY');
+        users.specificType('swipe_left', 'integer ARRAY');
       })  
   };
   
