@@ -32,11 +32,11 @@ router.get("/:id", restrictedUser, async (req, res) => {
 });
 
 router.post("/register", verifyNewUser, async (req, res) => {
-  const { username, password } = req.body;
+  const userInfo = req.body;
   try {
     const newUser = await UsersDb.add({
-      username: username,
-      password: bcrypt.hashSync(password, 12)
+      ...userInfo,
+      password: bcrypt.hashSync(userInfo.password, 12),
     });
     res.status(201).json(newUser);
   } catch (err) {
