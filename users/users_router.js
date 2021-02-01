@@ -49,7 +49,8 @@ router.post("/login", async (req, res) => {
   try {
     const userInfo = await UsersDb.getAllUserInfo(username);
     if (userInfo && bcrypt.compareSync(password, userInfo.password)) {
-      req.session.user = userInfo; //creates session
+      // req.session.user = userInfo; //creates session
+      // console.log(req.session.user)
       const user = await UsersDb.findBy({ id: userInfo.id });
       res.status(200).json({
         message: "welcome",
@@ -115,6 +116,19 @@ router.put("/:id", restrictedUser, verifyChanges, async (req, res) => {
       .json({ message: "could not update user info", error: err.message });
   }
 });
+
+router.get('/random', async (req, res)=> {
+  console.log("starting random")
+  try {
+    const randUser = await UsersDb.findRandom()
+    res.status(200).json(randUser)
+  }
+  catch (err ) {
+    res
+        .status(500)
+        .json({ message: "could not find new user", error: err.message });
+  }
+})
 
 
 function verifyChanges(req, res, next) {

@@ -1,12 +1,14 @@
 const db = require("../db/knex");
 
+
 module.exports = {
   getUsers,
   getAllUserInfo,
   findBy,
   add,
   remove,
-  update
+  update,
+  findRandom
 };
 
 // function checkForNullType(item) {
@@ -64,4 +66,9 @@ function update(id, changes) {
       if (prom > 0) return findBy({ id });
       else return prom;
     });
+}
+
+function findRandom(currUser = 1) { //todo: check random result against current user
+  return db.raw("SELECT RANDOM() * (SELECT MAX(id) FROM users)")
+    .then(user => user)
 }
