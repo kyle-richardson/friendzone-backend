@@ -4330,6 +4330,11 @@ ms@2.1.2, ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
+n@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/n/-/n-7.0.1.tgz#442a3e87088d5ed6ca2176d52c8b58fdf0e25f92"
+  integrity sha512-d27TFuGtvH5cnOCN+EYQewpzeu+1oYjtbN1NKv54RaC++vhMGqTdZ2kvI5t/wuEKntlUsCkulKu0zIB+2Ba8EA==
+
 nanomatch@^1.2.9:
   version "1.2.13"
   resolved "https://registry.yarnpkg.com/nanomatch/-/nanomatch-1.2.13.tgz#b87a8aa4fc0de8fe6be88895b38983ff265bd119"

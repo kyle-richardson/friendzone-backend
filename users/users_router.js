@@ -18,6 +18,18 @@ router.get("/", adminOnly, async (req, res) => {
   }
 });
 
+router.get('/random', async (req, res)=> {
+  try {
+    const randUser = await UsersDb.findRandom()
+    res.status(200).json(randUser.rows[0])
+  }
+  catch (err ) {
+    res
+        .status(500)
+        .json({ message: "could not find new user", error: err.message });
+  }
+})
+
 router.get("/:id", restrictedUser, async (req, res) => {
   const { id } = req.params;
   try {
@@ -117,18 +129,7 @@ router.put("/:id", restrictedUser, verifyChanges, async (req, res) => {
   }
 });
 
-router.get('/random', async (req, res)=> {
-  console.log("starting random")
-  try {
-    const randUser = await UsersDb.findRandom()
-    res.status(200).json(randUser)
-  }
-  catch (err ) {
-    res
-        .status(500)
-        .json({ message: "could not find new user", error: err.message });
-  }
-})
+
 
 
 function verifyChanges(req, res, next) {

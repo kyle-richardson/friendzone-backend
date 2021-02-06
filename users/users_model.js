@@ -68,7 +68,8 @@ function update(id, changes) {
     });
 }
 
-function findRandom(currUser = 1) { //todo: check random result against current user
-  return db.raw("SELECT RANDOM() * (SELECT MAX(id) FROM users)")
+async function findRandom() { //todo: check random result against current user
+  return await db
+    .raw("select * from users order by random() limit 1")
     .then(user => user)
 }
