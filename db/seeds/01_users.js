@@ -1,11 +1,28 @@
 const bcrypt = require("bcryptjs");
 const { admin_pass, admin_user } = require("../../config");
+const faker = require("faker")
+
+const createSeedUser = () => ({
+  username: faker.internet.userName(),
+  password: bcrypt.hashSync(faker.internet.password(), 12),
+  type: "user",
+  postal_code: faker.address.zipCode(),
+  first_name: faker.name.firstName(),
+  birthdate: faker.date.past(),
+  bio: faker.lorem.sentence()
+})
 
 exports.seed = function(knex) {
-  return knex("users").insert([
+  let newUsers = []
+  const desiredUsers = 50
+  
+  for(let i=0; i< desiredUsers; i++){
+    newUsers.push(createSeedUser())
+  }  
+  const basicSeeds = [
     {
-      username: admin_user,
-      password: bcrypt.hashSync(admin_pass, 12),
+      username: "admin_user",
+      password: bcrypt.hashSync("admin_pass", 12),
       type: "admin",
       postal_code: 76244,
       first_name: "admin",
@@ -46,5 +63,7 @@ exports.seed = function(knex) {
       gender: "female",
       looking_for: "male"
     }
-  ]);
+  ]
+  const combined = [...basicSeeds, ...newUsers]
+  return knex("users").insert(combined);
 };

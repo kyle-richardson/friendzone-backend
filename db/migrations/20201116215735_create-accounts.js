@@ -16,10 +16,12 @@ exports.up = function(knex) {
         users.string("bio");
         users.string("address");
         users.string("postal_code").notNullable();
-        users.string("gender").notNullable();
-        users.string("looking_for").notNullable();
+        users.string("gender");
+        users.string("looking_for");
+        users.specificType('kid_ages', 'integer ARRAY');
         users.specificType('swipe_right', 'integer ARRAY');
         users.specificType('swipe_left', 'integer ARRAY');
+        users.string("calendar");
       })  
   };
   

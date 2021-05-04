@@ -8,7 +8,8 @@ module.exports = {
   add,
   remove,
   update,
-  findRandom
+  findRandom,
+  findMultipleRandom
 };
 
 // function checkForNullType(item) {
@@ -72,4 +73,10 @@ async function findRandom() { //todo: check random result against current user
   return await db
     .raw("select * from users order by random() limit 1")
     .then(user => user)
+}
+
+async function findMultipleRandom() {
+  return await db
+    .raw("select * from users order by random() limit 100")
+    .then(users => users)
 }

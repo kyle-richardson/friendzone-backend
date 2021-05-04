@@ -29,6 +29,17 @@ router.get('/random', async (req, res)=> {
         .json({ message: "could not find new user", error: err.message });
   }
 })
+router.get('/getList', async (req, res)=> {
+  try {
+    const randUsers = await UsersDb.findMultipleRandom()
+    res.status(200).json(randUsers.rows)
+  }
+  catch (err ) {
+    res
+        .status(500)
+        .json({ message: "could not find new users", error: err.message });
+  }
+})
 
 router.get("/:id", restrictedUser, async (req, res) => {
   const { id } = req.params;
@@ -45,6 +56,7 @@ router.get("/:id", restrictedUser, async (req, res) => {
 
 router.post("/register", verifyNewUser, async (req, res) => {
   const userInfo = req.body;
+  console.log(userInfo)
   try {
     const newUser = await UsersDb.add({
       ...userInfo,
