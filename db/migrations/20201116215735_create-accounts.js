@@ -12,7 +12,7 @@ exports.up = function(knex) {
         users.date("birthdate").notNullable();
         users.string("first_name").notNullable();
         users.string("last_name");
-        users.binary("photo");
+        users.string("photo");
         users.string("bio");
         users.string("address");
         users.string("postal_code").notNullable();
@@ -21,7 +21,7 @@ exports.up = function(knex) {
         users.specificType('kid_ages', 'integer ARRAY');
         users.specificType('swipe_right', 'integer ARRAY');
         users.specificType('swipe_left', 'integer ARRAY');
-        users.string("calendar");
+        users.specificType("calendar", 'json ARRAY');
       })  
   };
   
