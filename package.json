@@ -10,10 +10,6 @@
     "server": "nodemon index.js",
     "test": "cross-env NODE_ENV=testing jest --watch --forceExit --detectOpenHandles --verbose"
   },
-  "engines": {
-    "node": "^14.2.0",
-    "yarn": "^1.19.2"
-  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
